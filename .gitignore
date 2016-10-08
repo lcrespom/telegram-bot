@@ -1,0 +1,6 @@
+*.log
+.DS_Store
+ehthumbs.db
+Thumbs.db
+/node_modules
+/secret

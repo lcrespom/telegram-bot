@@ -3,7 +3,7 @@ A telegram bot that posts messages to a channel. The bot must be authorized as a
 
 Usage:
 ```
-telebot bot-token channel message
+node telebot bot-token channel message
 ```
 
 ## Useful links:
