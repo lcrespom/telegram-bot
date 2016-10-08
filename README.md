@@ -1,9 +1,14 @@
 # telegram-bot
-A telegram bot that posts messages to a channel. The bot must be authorized as an administrator of the channel.
+A telegram bot that posts messages to a channel or chat id.
+- In case of messaging a channel, the bot must be authorized as
+	an administrator of the channel.
+- In case of messaging to a chat, the chat id is obtained by
+	first sending a message from a user to the bot
+
 
 Usage:
 ```
-node telebot bot-token channel message
+node telebot bot-token @channel|chatId message
 ```
 
 ## Useful links:

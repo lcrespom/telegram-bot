@@ -22,6 +22,8 @@ function parseCommandLine() {
 
 function sendMessage() {
 	var bot = new TelegramBot(token, {polling: true});
+	if (channel[0] != '@')
+		channel = parseInt(channel);
 	bot.sendMessage(channel, message)
 	.then(sent => {
 		console.log('sendMessage reply:', sent);
