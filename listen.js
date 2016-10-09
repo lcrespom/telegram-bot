@@ -2,8 +2,24 @@ const util = require('util');
 const TelegramBot = require('node-telegram-bot-api');
 
 let token;
+let count = 1;
+
+class HeartBeat {
+	constructor(timeout, handler) {
+		this.beatCount = 0;
+		setInterval(_ => {
+			console.log('... watchdog, beatCount:', this.beatCount);
+			if (this.beatCount == 0) handler();
+			this.beatCount = 0;
+		}, 1000 * timeout);
+	}
+	beat() {
+		this.beatCount++;
+	}
+}
 
 parseCommandLine();
+hb = new HeartBeat(60, _ => process.exit());
 let bot = new TelegramBot(token);
 getUpdates(bot);
 
@@ -20,7 +36,8 @@ function getUpdates(bot, nextUpdate) {
 		return -1;
 	})
 	.then(nextUpdate => {
-		console.log('Looping with update_id =', nextUpdate);
+		hb.beat();
+		console.log('Looping with update_id =', nextUpdate, 'count:', count++);
 		setTimeout(_ => {
 			if (nextUpdate < 0) nextUpdate = undefined;
 			getUpdates(bot, nextUpdate);
