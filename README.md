@@ -15,3 +15,4 @@ node telebot bot-token @channel|chatId message
 - Telegram bot introduction: https://core.telegram.org/bots
 - Telegram bot API: https://core.telegram.org/bots/api
 - Telegram channel FAQ: https://telegram.org/faq_channels
+- GitHub of API in use: https://github.com/yagop/node-telegram-bot-api

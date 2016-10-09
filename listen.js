@@ -49,7 +49,7 @@ function getUpdates(bot, nextUpdate) {
 	.then(updates => {
 		if (updates.length > 0) {
 			for (let update of updates)
-				processUpdate(update);
+				processUpdate(bot, update);
 			nextUpdate = updates.pop().update_id + 1;
 		}
 		return nextUpdate;
@@ -67,7 +67,7 @@ function getUpdates(bot, nextUpdate) {
 	});
 }
 
-function processUpdate(update) {
+function processUpdate(bot, update) {
 	/* Update example:
 	{ update_id: number,
     message:
@@ -84,9 +84,29 @@ function processUpdate(update) {
           username: 'username',
           type: 'private' },
        date: 1476012617,
-       text: 'fish' } }
+       text: 'message text' } }
 	   */
-	  let chatId = update.message.chat.id;
-	  let msg = update.message.text;
-	  console.log('processUpdate - chatId:', chatId, '- msg:', msg);
+	let chatId = update.message.chat.id;
+	let msg = update.message.text;
+	console.log('processUpdate - chatId:', chatId, '- msg:', msg);
+	if (msg == '/start') {
+		//bot.sendMessage(chatId, msgText);
+		//reply welcome message
+	}
+	else if (!isNaN(msg)) {
+		// find user number. If exists, assign chatId, otherwise, error
+	}
+	else {
+		let user = getChatUser(chatId);
+		if (user) {
+			// reply welcome back and remind how to change number
+		}
+		else {
+			// insist that number is required
+		}
+	}
+}
+
+function getChatUser() {
+	return null;
 }
