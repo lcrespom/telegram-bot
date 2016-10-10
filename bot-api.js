@@ -22,8 +22,7 @@ class BotApi {
 				url: this.botURL + method,
 				method: 'POST',
 				gzip: true,
-				json: true,
-				body: obj
+				json: obj
 			}, (error, message, body) => {
 				if (error) reject(error, message, body);
 				else resolve(body, message);

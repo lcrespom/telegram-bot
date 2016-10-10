@@ -1,6 +1,6 @@
 const util = require('util');
-const TelegramBot = require('node-telegram-bot-api');
-//const TelegramBot = require('./bot-api');
+const TelegramBot = require('./bot-api');
+
 
 //-------------------- Heartbeat watchdog --------------------
 class HeartBeat {
