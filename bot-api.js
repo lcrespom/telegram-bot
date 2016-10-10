@@ -16,6 +16,10 @@ class BotApi {
 		return this._request('getUpdates', { offset, limit, timeout });
 	}
 
+	sendMessage(chat_id, text) {
+		return this._request('sendMessage', { chat_id, text });
+	}
+
 	_request(method, obj) {
 		return new Promise((resolve, reject) => {
 			request({
