@@ -28,8 +28,10 @@ class BotApi {
 				gzip: true,
 				json: obj
 			}, (error, message, body) => {
-				if (error) reject(error, message, body);
-				else resolve(body, message);
+				if (error || body.ok !== true)
+					reject(error, message, body);
+				else
+					resolve(body.result, message);
 			});
 		});
 	}

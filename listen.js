@@ -46,7 +46,7 @@ function parseCommandLine() {
 //-------------------- Update listening & processing --------------------
 
 function getUpdates(bot, nextUpdate) {
-	bot.getUpdates(10, 100, nextUpdate)
+	bot.getUpdates(nextUpdate, 100, 10)
 	.then(updates => {
 		if (updates.length > 0) {
 			for (let update of updates)
