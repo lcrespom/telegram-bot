@@ -6,7 +6,9 @@ const TelegramBot = require('./bot-api');
 class HeartBeat {
 	constructor(timeout, handler) {
 		this.beatCount = 0;
+		this.checks = 0;
 		setInterval(_ => {
+			this.checks++;
 			if (this.beatCount == 0) handler();
 			this.beatCount = 0;
 		}, 1000 * timeout);
@@ -27,7 +29,7 @@ main();
 function main() {
 	parseCommandLine();
 	hb = new HeartBeat(60, _ => {
-		console.error('Watchdog timed out. Exiting.');
+		console.log(`Watchdog timed out after ${hb.checks} checks. Exiting.`);
 		process.exit();
 	});
 	let bot = new TelegramBot(token);
