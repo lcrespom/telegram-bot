@@ -93,23 +93,24 @@ function processUpdate(bot, update) {
 	let msg = update.message.text;
 	console.log('processUpdate - chatId:', chatId, '- msg:', msg);
 	if (msg == '/start') {
-		//bot.sendMessage(chatId, msgText);
-		//reply welcome message
+		//reply welcome message using from.first_name
 	}
-	else if (!isNaN(msg)) {
-		// find user number. If exists, assign chatId, otherwise, error
+	let user = getChatUser(update.message.from);
+	if (user) {
+		updateChatUser(user, chatId);
+		// Update chat id in user record
+		// Reply something?
 	}
 	else {
-		let user = getChatUser(chatId);
-		if (user) {
-			// reply welcome back and remind how to change number
-		}
-		else {
-			// insist that number is required
-		}
+		// Report error message: user not found
 	}
 }
 
-function getChatUser() {
+function getChatUser(from) {
+	let name = from.first_name.toUpperCase();
+	let surname = from.last_name.toUpperCase();
+	let query = `SELECT * FROM users WHERE UPPER(name)=? AND UPPER(surname)=?`;
+	// ...OR username=from.username ?
+	// TODO access DB and return user object
 	return null;
 }
